@@ -14,5 +14,6 @@ steps:
     args: [ "container", "clusters", "get-credentials", "teatime-cluster", "--region", "europe-west3" ]
 
   - name: gcr.io/cloud-builders/gcloud
-    args: [ "kubectl", "apply", "-f", "k8s/" ]
+    entrypoint: "kubectl"
+    args: [ "apply", "-f", "k8s/" ]
 
