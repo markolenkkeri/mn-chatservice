@@ -1,8 +1,6 @@
 package chatservice.controllers
 
 import chatservice.client.ChatClientWebSocketClient
-import chatservice.services.ChatTableWatcher
-import io.micronaut.context.annotation.Requires
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.QueryValue
@@ -14,24 +12,18 @@ import org.slf4j.LoggerFactory
 import javax.inject.Inject
 
 @Controller("/chattest")
-@Requires(beans = ChatTableWatcher)
 class TestingController {
 
     Logger log = LoggerFactory.getLogger(TestingController)
 
     @Inject
     @Client("http://localhost:8080")
-    RxWebSocketClient userWebSocketClient
-
-    @Get
-    String index() {
-        "This is the chat testing controller"
-    }
+    RxWebSocketClient webSocketClient
 
     @Get("/{sender}")
     String sendMessage(String sender, @QueryValue String message) {
         log.info "Handling demo message sending"
-        ChatClientWebSocketClient client = userWebSocketClient.connect(ChatClientWebSocketClient, "/chat/$sender/").blockingFirst()
+        ChatClientWebSocketClient client = webSocketClient.connect(ChatClientWebSocketClient, "/chat/$sender/".toString()).blockingFirst()
         client.send(message)
         "Sent."
     }
