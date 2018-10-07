@@ -8,7 +8,7 @@ steps:
     args: [ "push", "gcr.io/$PROJECT_ID/backend:$SHORT_SHA" ]
   
   - name: busybox
-    args: [ "sed", "-i", "s/${BACKEND_VERSION}/$SHORT_SHA/g", "k8s/deployment.yaml" ]
+    args: [ "sed", "-i", "s/latest/$SHORT_SHA/g", "k8s/deployment.yaml" ]
 
   - name: gcr.io/cloud-builders/gcloud
     args: [ "gcloud", "container", "clusters", "get-credentials", "teatime-cluster", "--region", "europe-west3" ]
