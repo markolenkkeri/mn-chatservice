@@ -22,10 +22,10 @@ spec:
           resources:
             limits:
               cpu: 100m
-              memory: 128Mi
+              memory: 256Mi
             requests:
               cpu: 50m
-              memory: 64Mi
+              memory: 128Mi
           readinessProbe:
             httpGet:
               path: /healthz
@@ -41,6 +41,6 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 3
           env:
-            - name: ATK
-              value: FOO
+            - name: _JAVA_OPTIONS
+              value: -Xss256K -Xmx192M -Xms64M -XX:MaxRAM=256M -XX:MaxMetaspaceSize=64M
 

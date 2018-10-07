@@ -11,7 +11,7 @@ steps:
     args: [ "sed", "-i", "s/latest/$SHORT_SHA/g", "k8s/deployment.yaml" ]
 
   - name: gcr.io/cloud-builders/gcloud
-    args: [ "container", "clusters", "get-credentials", "$CLUSTER", "--region", "europe-west3" ]
+    args: [ "container", "clusters", "get-credentials", "$_CLUSTER", "--region", "europe-west3" ]
 
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: "kubectl"
