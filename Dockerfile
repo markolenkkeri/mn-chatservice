@@ -6,6 +6,7 @@ RUN gradle --quiet --no-daemon assemble
 
 FROM openjdk:8u171-alpine
 LABEL maintainer="https://github.com/Vincit"
+EXPOSE 8080
 COPY --from=builder --chown=nobody:nobody /home/gradle/project/build/libs/*-all.jar /chatservice.jar
 USER nobody
 CMD [ "java", "-jar", "/chatservice.jar" ]
