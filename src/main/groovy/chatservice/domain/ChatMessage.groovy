@@ -1,6 +1,5 @@
 package chatservice.domain
 
-import groovy.transform.ToString
 import org.bson.types.ObjectId
 
 import java.time.LocalDateTime
@@ -11,8 +10,7 @@ class ChatMessage {
     String message
     LocalDateTime dateTime = LocalDateTime.now()
 
-    String toString()
-    {
+    String toString() {
         return "[$sender]: $message"
     }
 }

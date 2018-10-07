@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory
 import javax.inject.Inject
 
 @Controller("/chattest")
-@Requires(beans=ChatTableWatcher)
+@Requires(beans = ChatTableWatcher)
 class TestingController {
 
     Logger log = LoggerFactory.getLogger(TestingController)
@@ -29,8 +29,7 @@ class TestingController {
     }
 
     @Get("/{sender}")
-    String sendMessage(String sender, @QueryValue String message)
-    {
+    String sendMessage(String sender, @QueryValue String message) {
         log.info "Handling demo message sending"
         ChatClientWebSocketClient client = userWebSocketClient.connect(ChatClientWebSocketClient, "/chat/$sender/").blockingFirst()
         client.send(message)

@@ -1,7 +1,9 @@
 package chatservice.client
 
 import io.micronaut.websocket.WebSocketSession
-import io.micronaut.websocket.annotation.*
+import io.micronaut.websocket.annotation.ClientWebSocket
+import io.micronaut.websocket.annotation.OnMessage
+import io.micronaut.websocket.annotation.OnOpen
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -24,8 +26,7 @@ abstract class ChatClientWebSocketClient implements AutoCloseable {
     }
 
     @OnMessage
-    void onMessage(
-            String message) {
+    void onMessage(String message) {
         log.info "Client: A message was received ! $message"
     }
 }

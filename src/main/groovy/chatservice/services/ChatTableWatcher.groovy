@@ -16,8 +16,8 @@ import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 @Context
-@Requires(beans=MongoClient)
-@Requires(beans=WebSocketBroadcaster)
+@Requires(beans = MongoClient)
+@Requires(beans = WebSocketBroadcaster)
 class ChatTableWatcher {
 
     Logger log = LoggerFactory.getLogger(ChatTableWatcher)
@@ -29,15 +29,15 @@ class ChatTableWatcher {
     def publisher
     def subscriber
 
-    ChatTableWatcher(MongoClient mongoClient, WebSocketBroadcaster webSocketBroadcaster, @Value('${mongodb.dbname:chat}')String databaseName)
-    {
+    ChatTableWatcher(MongoClient mongoClient, WebSocketBroadcaster webSocketBroadcaster,
+                     @Value('${mongodb.dbname:chat}') String databaseName) {
         log.info "ChatTableWatcher init starting."
 
-        this.mongoClient=mongoClient
-        this.webSocketBroadcaster=webSocketBroadcaster
-        this.databaseName=databaseName
+        this.mongoClient = mongoClient
+        this.webSocketBroadcaster = webSocketBroadcaster
+        this.databaseName = databaseName
 
-        chatmessageCollection=mongoClient.getDatabase(databaseName).getCollection('chatmessage', ChatMessage)
+        chatmessageCollection = mongoClient.getDatabase(databaseName).getCollection('chatmessage', ChatMessage)
 
         publisher = chatmessageCollection.watch(ChatMessage).fullDocument(FullDocument.UPDATE_LOOKUP).batchSize(1)
 

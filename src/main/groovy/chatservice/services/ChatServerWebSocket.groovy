@@ -1,8 +1,7 @@
 package chatservice.services
 
-import chatservice.subscribers.MongodbSubscriber
-
 import chatservice.domain.ChatMessage
+import chatservice.subscribers.MongodbSubscriber
 import com.mongodb.reactivestreams.client.MongoClient
 import com.mongodb.reactivestreams.client.MongoCollection
 import io.micronaut.context.annotation.Value
@@ -24,8 +23,8 @@ class ChatServerWebSocket {
     MongoCollection<ChatMessage> chatmessageCollection
 
     ChatServerWebSocket(MongoClient mongoClient, @Value('${mongodb.dbname:chat}') String databaseName) {
-        this.mongoClient=mongoClient
-        chatmessageCollection=getCollection(databaseName)
+        this.mongoClient = mongoClient
+        chatmessageCollection = getCollection(databaseName)
     }
 
     @OnOpen
@@ -36,7 +35,7 @@ class ChatServerWebSocket {
     @OnMessage
     void onSocketMessage(String sender, String message) {
         log.info "Message received: [$sender]: $message"
-        subscribeAndAwait(chatmessageCollection.insertOne(new ChatMessage(sender:sender, message:message)))
+        subscribeAndAwait(chatmessageCollection.insertOne(new ChatMessage(sender: sender, message: message)))
     }
 
     @OnClose

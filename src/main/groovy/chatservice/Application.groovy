@@ -1,9 +1,7 @@
 package chatservice
 
-import io.micronaut.runtime.Micronaut
 import groovy.transform.CompileStatic
-
-import javax.inject.Inject
+import io.micronaut.runtime.Micronaut
 
 @CompileStatic
 class Application {

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-class CollectionSubscriber <T> implements Subscriber<T> {
+class CollectionSubscriber<T> implements Subscriber<T> {
     Logger log = LoggerFactory.getLogger(CollectionSubscriber)
     private final CountDownLatch latch
     private volatile Subscription subscription
@@ -31,7 +31,7 @@ class CollectionSubscriber <T> implements Subscriber<T> {
 
     @Override
     void onNext(final T t) {
-        def viesti = (ChangeStreamDocument<ChatMessage>)t
+        def viesti = (ChangeStreamDocument<ChatMessage>) t
         log.info "Collection: Broadcasting! $webSocketBroadcaster ${viesti.fullDocument.dump()}"
         webSocketBroadcaster.broadcastSync(viesti.fullDocument)
         log.info "Collection: Broadcast complete."
