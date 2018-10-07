@@ -21,10 +21,10 @@ spec:
             - containerPort: 8080
           resources:
             limits:
-              cpu: 200m
+              cpu: 300m
               memory: 256Mi
             requests:
-              cpu: 50m
+              cpu: 100m
               memory: 128Mi
           readinessProbe:
             httpGet:
@@ -41,6 +41,15 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 3
           env:
-            - name: "_JAVA_OPTIONS"
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secrets
+                  key: MONGODB_URI
+            - name: MONGODB_SSL
+              value: "true"
+            - name: MONGODB_DBNAME
+              value: "chat"
+            - name: _JAVA_OPTIONS
               value: "-Xss256K -Xmx192M -Xms64M -XX:MaxRAM=256M -XX:MaxMetaspaceSize=64M"
 
