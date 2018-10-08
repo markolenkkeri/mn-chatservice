@@ -9,8 +9,3 @@ mongodb:
   ssl: false
   uri: mongodb://127.0.0.1:27017/chatdb
 
-endpoints:
-  health:
-    mongodb:
-      enabled: false
-

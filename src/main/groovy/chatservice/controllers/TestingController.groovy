@@ -20,6 +20,11 @@ class TestingController {
     @Client("http://localhost:8080")
     RxWebSocketClient webSocketClient
 
+    @Get
+    String index() {
+        "This is the chat testing controller"
+    }
+
     @Get("/{sender}")
     String sendMessage(String sender, @QueryValue String message) {
         log.info "Handling demo message sending"
