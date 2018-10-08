@@ -11,4 +11,6 @@ mongodb:
 
 endpoints:
   health:
-    details-visible: ANONYMOUS
+    mongodb:
+      enabled: false
+
