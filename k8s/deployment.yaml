@@ -28,17 +28,17 @@ spec:
               memory: 128Mi
           readinessProbe:
             httpGet:
-              path: /health
-              port: 8080
-            periodSeconds: 5
-            initialDelaySeconds: 5
-            timeoutSeconds: 3
-          livenessProbe:
-            httpGet:
-              path: /health
+              path: /chattest
               port: 8080
             periodSeconds: 5
             initialDelaySeconds: 10
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /chattest
+              port: 8080
+            periodSeconds: 5
+            initialDelaySeconds: 15
             timeoutSeconds: 3
           env:
             - name: MONGODB_URI
