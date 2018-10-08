@@ -27,6 +27,7 @@ dependencies {
     implementation "io.micronaut:runtime-groovy"
     implementation "io.micronaut:validation"
     compile "io.micronaut.configuration:mongo-reactive"
+    compile "io.micronaut:management"
     compileOnly "io.micronaut:inject-groovy"
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
     testImplementation "io.micronaut:inject-groovy"
