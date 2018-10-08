@@ -1,6 +1,8 @@
 micronaut:
-    application:
-        name: chatservice
+  server:
+    port: 8080
+  application:
+    name: chatservice
 
 mongodb:
   dbname: chatdb
